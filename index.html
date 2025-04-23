@@ -1,255 +1,226 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Store</title>
-    <style>
-        /* Reset de estilos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      background-image: radial-gradient(#f0f0f0 1px, transparent 1px);
+      background-size: 20px 20px;
+      scroll-behavior: smooth;
+      color: #222;
+    }
 
-        /* Corpo e fundo */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f4f4f4;
-        }
+    header {
+      background: #000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
 
-        /* Barra de Navegação */
-        header {
-            background-color: #000;
-            color: white;
-            padding: 10px 0;
-        }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    nav a:hover {
+      color: #00bfa6;
+    }
 
-        nav .logo a {
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #fff;
-            text-decoration: none;
-        }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+    }
 
-        nav .menu {
-            list-style: none;
-            display: flex;
-        }
+    .highlight-product {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 20px;
+    }
 
-        nav .menu li {
-            margin: 0 15px;
-        }
+    .highlight-product img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
 
-        nav .menu li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
+    .highlight-product h3 {
+      margin: 15px 0 10px;
+      font-size: 28px;
+    }
 
-        /* Seção Hero */
-        #hero {
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-            color: white;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+    .highlight-product p {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 20px;
+    }
 
-        #hero h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
+    .highlight-product button {
+      background-color: #000;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
 
-        #hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+    .highlight-product button:hover {
+      background-color: #333;
+    }
 
-        /* Produtos */
-        #produtos {
-            background-color: #fff;
-            padding: 50px 0;
-        }
+    #cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 1000;
+    }
 
-        #produtos h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+    #cart-info {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 250px;
+    }
 
-        .produtos-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    #cart-info.show {
+      display: block;
+    }
 
-        .produto {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 280px;
-            text-align: center;
-            padding: 20px;
-        }
+    .remove-item {
+      color: red;
+      cursor: pointer;
+      float: right;
+    }
 
-        .produto img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+    #cupom-select {
+      margin: 10px 0;
+    }
 
-        .produto h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+    .pay-btn {
+      background: #000;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-        .produto p {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .produto .btn {
-            background-color: #f04e23;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            font-size: 18px;
-            text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .produto .btn:hover {
-            background-color: #c43c1f;
-        }
-
-        /* Seção Contato */
-        #contato {
-            background-color: #eee;
-            padding: 50px 0;
-        }
-
-        #contato h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        #contato form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #contato input, #contato textarea {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        #contato button {
-            background-color: #f04e23;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            font-size: 18px;
-            text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        #contato button:hover {
-            background-color: #c43c1f;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
+    .close-cart {
+      float: right;
+      cursor: pointer;
+      color: red;
+    }
+  </style>
 </head>
 <body>
-    <!-- Barra de Navegação -->
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="#">Style Store</a>
-            </div>
-            <ul class="menu">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Style Store</h1>
+    <div id="cart">🛒 Carrinho</div>
+  </header>
 
-    <!-- Seção de Hero -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Estilo e Conforto</h1>
-            <p>Confira nossas últimas coleções e promoções.</p>
-            <a href="#produtos" class="btn">Ver Produtos</a>
-        </div>
-    </section>
+  <section class="section" id="destaque">
+    <h2>Destaque da Semana</h2>
+    <div class="highlight-product">
+      <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg" alt="Cachorrinho">
+      <h3>Jaqueta Pet</h3>
+      <p>R$ 109,90</p>
+      <button onclick="adicionarProduto('Jaqueta Pet', 109.90)">Adicionar ao carrinho</button>
+    </div>
+  </section>
 
-    <!-- Produtos -->
-    <section id="produtos">
-        <h2>Novidades</h2>
-        <div class="produtos-container">
-            <!-- Produto 1 -->
-            <div class="produto">
-                <img src="https://www.petfinder.com/wp-content/uploads/2020/11/large_dog_sitting.jpg" alt="Cachorrinho Fofo 1">
-                <h3>Produto 1</h3>
-                <p>R$ 99,99</p>
-                <a href="#" class="btn">Comprar</a>
-            </div>
-            <!-- Produto 2 -->
-            <div class="produto">
-                <img src="https://www.petfinder.com/wp-content/uploads/2020/11/large_dog_sitting.jpg" alt="Cachorrinho Fofo 2">
-                <h3>Produto 2</h3>
-                <p>R$ 149,99</p>
-                <a href="#" class="btn">Comprar</a>
-            </div>
-        </div>
-    </section>
+  <div id="cart-info">
+    <span class="close-cart" onclick="toggleCarrinho()">✖</span>
+    <h4>Seu Carrinho</h4>
+    <ul id="lista-carrinho"></ul>
+    <hr>
+    <strong>Total: R$ <span id="total">0.00</span></strong>
+    <div>
+      <label for="cupom-select">Cupom:</label>
+      <select id="cupom-select">
+        <option value="0">Nenhum</option>
+        <option value="10">10% OFF</option>
+        <option value="20">20% OFF</option>
+      </select>
+    </div>
+    <button class="pay-btn" onclick="window.location.href='checkout.html'">Pagar</button>
+  </div>
 
-    <!-- Contato -->
-    <section id="contato">
-        <h2>Entre em Contato</h2>
-        <form action="#">
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="email" placeholder="Seu Email" required>
-            <textarea placeholder="Sua Mensagem" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
+  <footer>
+    <p>&copy; 2025 Style Store. Todos os direitos reservados.</p>
+  </footer>
 
-    <footer>
-        <p>&copy; 2025 Style Store. Todos os direitos reservados.</p>
-    </footer>
+  <script>
+    const cart = document.getElementById('cart');
+    const cartInfo = document.getElementById('cart-info');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalElement = document.getElementById('total');
+    let carrinho = [];
+
+    function toggleCarrinho() {
+      cartInfo.classList.toggle('show');
+    }
+
+    cart.addEventListener('click', toggleCarrinho);
+
+    function adicionarProduto(nome, preco) {
+      carrinho.push({ nome, preco });
+      atualizarCarrinho();
+      cartInfo.classList.add('show');
+    }
+
+    function removerProduto(index) {
+      carrinho.splice(index, 1);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      carrinho.forEach((item, index) => {
+        total += item.preco;
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+        const x = document.createElement('span');
+        x.textContent = ' ✖';
+        x.className = 'remove-item';
+        x.onclick = () => removerProduto(index);
+        li.appendChild(x);
+        listaCarrinho.appendChild(li);
+      });
+
+      const desconto = parseInt(document.getElementById('cupom-select').value) || 0;
+      const totalComDesconto = total * (1 - desconto / 100);
+      totalElement.textContent = totalComDesconto.toFixed(2);
+    }
+
+    document.getElementById('cupom-select').addEventListener('change', atualizarCarrinho);
+  </script>
 </body>
 </html>
